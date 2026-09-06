@@ -1,11 +1,10 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { fetchSeasonInfo, mediaImagePath } from "../../api";
-import type { MediaDetails, SeasonDetails } from "../../responses";
+import { fetchSeasonInfo, mediaImagePath } from "../api";
+import type { MediaDetails, SeasonDetails } from "../responses";
 import { useEffect, useState } from "react";
-import { EpisodeCard } from "../../components/episodeCard";
+import { EpisodeCard } from "../components/episodeCard";
 import { FaArrowLeft } from "react-icons/fa6";
-import "../../styles/detail.css";
-import TVDropdown from "../../components/dropdown";
+import "../styles/detail.css";
 
 export default function TVDetails() {
     const titleInfo = useLoaderData() as MediaDetails;
@@ -60,17 +59,19 @@ export default function TVDetails() {
                 <div className="episodes-header">
                     <h2>Episodes</h2>
 
-                    <TVDropdown
-                        // className="select"
-                        value={seasonNumber}
-                        onChange={setSeasonNumber}
-                        options={
-                            titleInfo.seasons?.map(season => ({
-                                label: season.name,
-                                value: season.season_number
-                            })) ?? []
-                        }
-                    />
+                    <div className="select-wrapper">
+                        <select
+                            className="select"
+                            value={seasonNumber}
+                            onChange={(e) => setSeasonNumber(Number(e.target.value))}
+                        >
+                            {titleInfo.seasons?.map(season => (
+                                <option key={season.season_number} value={season.season_number}>
+                                    {season.name}
+                                </option>
+                            )) ?? []}
+                        </select>
+                    </div>
                 </div>
 
                 <h3> {season?.name} </h3>

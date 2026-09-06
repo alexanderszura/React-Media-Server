@@ -4,11 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import { SettingsProvider } from "./SettingsContext";
 import NotFound from "./views/NotFound";
-import MediaSearch from "./views/Media/Search";
-import TVDetails from "./views/Media/TVDetails";
-import MovieDetails from "./views/Media/MovieDetails";
+import MediaSearch from "./views/Search";
+import TVDetails from "./views/TVDetails";
+import MovieDetails from "./views/MovieDetails";
 import { fetchSeasonInfo, fetchTitleInfo } from "./api";
-import EpisodeDetails from "./views/Media/EpisodeDetails";
+import EpisodeDetails from "./views/EpisodeDetails";
 import Play from "./Play";
 
 const router = createBrowserRouter([

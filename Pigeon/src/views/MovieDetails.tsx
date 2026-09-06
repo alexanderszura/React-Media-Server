@@ -1,9 +1,9 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { mediaImagePath } from "../../api";
-import type { MediaDetails } from "../../responses";
+import { mediaImagePath } from "../api";
+import type { MediaDetails } from "../responses";
 import { FaArrowLeft } from "react-icons/fa6";
-import "../../styles/detail.css";
-import { PlayButton } from "../../components/playButton";
+import "../styles/detail.css";
+import { PlayButton } from "../components/playButton";
 
 export default function MovieDetails() {
     const navigate = useNavigate();

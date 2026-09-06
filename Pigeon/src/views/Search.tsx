@@ -1,11 +1,11 @@
 import { useState } from "react";
-import "../../styles/search.css";
+import "../styles/search.css";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import { useSettings } from "../../SettingsContext";
-import * as API from "../../api";
-import * as response from "../../responses.tsx"
-import Keyboard from "../../components/keyboardCard.tsx";
-import { MediaCard } from "../../components/mediaCard.tsx";
+import { useSettings } from "../SettingsContext";
+import * as API from "../api";
+import * as response from "../responses.tsx"
+import Keyboard from "../components/keyboardCard.tsx";
+import { MediaCard } from "../components/mediaCard.tsx";
 
 export default function MediaSearch() {
     const { settings } = useSettings();

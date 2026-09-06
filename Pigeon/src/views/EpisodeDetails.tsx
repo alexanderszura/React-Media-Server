@@ -1,10 +1,10 @@
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-import { fetchTitleInfo, mediaImagePath } from "../../api";
-import type { MediaDetails, SeasonDetails } from "../../responses";
+import { fetchTitleInfo, mediaImagePath } from "../api";
+import type { MediaDetails, SeasonDetails } from "../responses";
 import { FaArrowLeft } from "react-icons/fa6";
-import "../../styles/detail.css";
+import "../styles/detail.css";
 import { useEffect, useState } from "react";
-import { PlayButton } from "../../components/playButton";
+import { PlayButton } from "../components/playButton";
 
 export default function EpisodeDetails() {
     const navigate = useNavigate();
