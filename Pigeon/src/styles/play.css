@@ -1,0 +1,142 @@
+/* ==========================================================
+   Play — full-bleed embedded video player
+   The actual player now lives inside an iframe served by the
+   home media server, so this file only styles the app-level
+   chrome layered on top of it: the back button + title
+   overlay. Netflix-style scrim, amber for the back button,
+   per theme.css's convention.
+
+   `.player` escapes the normal app-shell layout entirely
+   (fixed, viewport-filling) so the nav bar and the scrollable
+   `.app-main` never enter the picture.
+   ========================================================== */
+
+.player {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #000;
+  overflow: hidden;
+  cursor: default;
+}
+
+.player--controls-hidden {
+  cursor: none;
+}
+
+.player__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #000;
+}
+
+/* ---------------------------------------------------------
+   Scrim — soft black gradient so the title/back button stay
+   legible over whatever is playing underneath.
+   --------------------------------------------------------- */
+
+.player__scrim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 5;
+}
+
+.player__scrim--top {
+  top: 0;
+  height: 220px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent);
+}
+
+.player--controls-hidden .player__scrim {
+  opacity: 0;
+}
+
+/* ---------------------------------------------------------
+   Loading spinner — shown until the iframe fires onLoad
+   --------------------------------------------------------- */
+
+.player__buffering {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text);
+  pointer-events: none;
+}
+
+.player__buffering p {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------
+   Top bar — back button + title
+   --------------------------------------------------------- */
+
+.player__top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 36px 56px 0;
+  transition: opacity 0.35s ease, visibility 0s linear 0s;
+}
+
+.player--controls-hidden .player__top-bar {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.player__back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background: rgba(23, 23, 28, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.player__back-button:hover {
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+}
+
+.player__back-button:focus-visible {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow-accent);
+  transform: translateY(-1px) scale(1.06);
+}
+
+/* ---------------------------------------------------------
+   Small windows / narrow aspect ratios
+   --------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .player__top-bar {
+    padding: 24px 24px 0;
+  }
+}
