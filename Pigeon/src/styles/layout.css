@@ -9,8 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 14px 28px;
+  gap: var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
   background: rgba(10, 10, 13, 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -20,10 +20,10 @@
 .app-nav__brand {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: var(--space-xs);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: var(--text-lg);
   letter-spacing: 0.02em;
   color: var(--text);
 }
@@ -35,16 +35,16 @@
 .app-nav__links {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-xs);
 }
 
 .app-nav__link {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-pill);
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text-muted);
   border: 1px solid transparent;

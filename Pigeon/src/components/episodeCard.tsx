@@ -1,15 +1,16 @@
 import { mediaImagePath } from "../api";
 import type { MediaDetails, SeasonEpisode } from "../responses";
-import "./episode-card.css";
+import "./episodeCard.css";
 import { useNavigate } from "react-router-dom";
 import { PlayButton } from "./playButton";
 
 interface EpisodeCardProps {
     details: MediaDetails
     episode: SeasonEpisode
+    onWatch?: (episode: SeasonEpisode) => void
 }
 
-export function EpisodeCard({ episode, details }: EpisodeCardProps) {
+export function EpisodeCard({ episode, details, onWatch }: EpisodeCardProps) {
   const imageUrl = mediaImagePath(episode.still_path);
 
   const navigate = useNavigate();
@@ -19,15 +20,21 @@ export function EpisodeCard({ episode, details }: EpisodeCardProps) {
       episode: episode,
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onWatch) {
+      onWatch(episode);
+    }
+    navigate(
+        `/title/TV/${episode.show_id}/${episode.season_number}/${episode.episode_number}`
+    );
+  };
+
   return (
     <div
         className="episode-card"
         title={episode.overview}
-        onClick={() =>
-            navigate(
-                `/title/TV/${episode.show_id}/${episode.season_number}/${episode.episode_number}`
-            )
-        }
+        onClick={handleClick}
     >
         <span className="episode-number">{episode.episode_number}</span>
 

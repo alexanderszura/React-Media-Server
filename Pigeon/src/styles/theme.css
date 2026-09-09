@@ -90,6 +90,23 @@ html {
   --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
 
+  /* Responsive spacing system - scales smoothly across devices */
+  --space-xs: clamp(4px, 0.5vw, 8px);
+  --space-sm: clamp(8px, 1vw, 16px);
+  --space-md: clamp(16px, 2vw, 24px);
+  --space-lg: clamp(24px, 3vw, 32px);
+  --space-xl: clamp(32px, 4vw, 48px);
+  --space-2xl: clamp(48px, 6vw, 64px);
+
+  /* Responsive typography */
+  --text-xs: clamp(0.7rem, 0.8vw, 0.85rem);
+  --text-sm: clamp(0.8rem, 0.9vw, 0.95rem);
+  --text-base: clamp(0.9rem, 1vw, 1.1rem);
+  --text-lg: clamp(1.1rem, 1.2vw, 1.35rem);
+  --text-xl: clamp(1.35rem, 1.5vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 2vw, 2.5rem);
+  --text-3xl: clamp(2.25rem, 3vw, 3.5rem);
+
   color-scheme: dark;
 }
 
