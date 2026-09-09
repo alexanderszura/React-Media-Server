@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import { SettingsProvider } from "./SettingsContext";
 import NotFound from "./views/NotFound";
 import MediaSearch from "./views/Search";
 import TVDetails from "./views/TVDetails";
@@ -17,7 +16,8 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, path: "media-search", element: <MediaSearch /> },
+      { index: true, element: <MediaSearch /> },
+      { path: "search", element: <MediaSearch /> },
       { path: "play/tv/:id/:season/:episode", element: <Play type={"tv"} />},
       { path: "play/movie/:id", element: <Play type={"movie"} />},
       { 
@@ -50,9 +50,7 @@ const root = document.getElementById("root");
 if (root) {
   ReactDOM.createRoot(root).render(
     <React.StrictMode>
-      <SettingsProvider>
-        <RouterProvider router={router} />
-      </SettingsProvider>
+      <RouterProvider router={router} />
     </React.StrictMode>
   );
 } else {

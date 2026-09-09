@@ -1,0 +1,32 @@
+name: Build and Release
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: Pigeon
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies & Build
+        run: npm ci && npm run build
+
+      - name: Archive build output
+        run: cd dist && tar -czf ../dist.tar.gz .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Pigeon/dist.tar.gz # Point to the generated archive path
+          tag_name: latest
+          target_commitish: main
